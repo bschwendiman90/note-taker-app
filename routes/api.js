@@ -53,5 +53,21 @@ router.post('/notes', (req, res) => {
     });
 });
 
+router.delete('/notes/:id', async (req, res) => {
+    const noteID = req.params.id
+    let notes = await fs.readFileSync('db/db.json', 'utf8', (err, data) => {
+        // notes = JSON.parse(data)
+        
+        // // loop through the array looking for the correct id
+        // 
+    });
+    notes = JSON.parse(notes)
+   notes = notes.filter((note) => note.id != noteID)
+    await fs.writeFile('db/db.json', JSON.stringify(notes), () => {
+        console.log('hello')
+        res.json({ok: true})
 
+    })
+   
+})
 module.exports = router;
